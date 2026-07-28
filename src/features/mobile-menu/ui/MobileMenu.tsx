@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useId, useState } from 'react'
 
+import { telHref } from '@/shared/lib'
+
 import styles from './MobileMenu.module.scss'
 
 type NavLink = { href: string; label: string }
@@ -68,7 +70,7 @@ export function MobileMenu({ links, phone }: { links: NavLink[]; phone?: string 
               ))}
             </ul>
             {phone && (
-              <a className={styles.phone} href={`tel:${phone.replace(/[^+0-9]/g, '')}`}>
+              <a className={styles.phone} href={telHref(phone)}>
                 {phone}
               </a>
             )}

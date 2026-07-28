@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 import { CallbackButton } from '@/features/lead-form'
 import { MobileMenu } from '@/features/mobile-menu'
+import { telHref } from '@/shared/lib'
 
 import styles from './Header.module.scss'
 
@@ -89,7 +90,7 @@ export function HeaderClient({
 
         <div className={styles.actions}>
           {phone && (
-            <a className={styles.phone} href={`tel:${phone.replace(/[^+0-9]/g, '')}`}>
+            <a className={styles.phone} href={telHref(phone)}>
               {phone}
             </a>
           )}

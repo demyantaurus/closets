@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { getSettings } from '@/shared/api'
+import { telHref } from '@/shared/lib'
 
 import styles from './Footer.module.scss'
 
@@ -42,11 +43,7 @@ export async function Footer() {
 
         <div className={styles.contacts}>
           {settings.phones?.map((item) => (
-            <a
-              key={item.id}
-              className={styles.phone}
-              href={`tel:${item.number.replace(/[^+0-9]/g, '')}`}
-            >
+            <a key={item.id} className={styles.phone} href={telHref(item.number)}>
               {item.number}
             </a>
           ))}

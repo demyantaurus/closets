@@ -1,6 +1,6 @@
 export { imageProps, isMedia } from './media'
 export type { ImageProps, MediaSize } from './media'
-export { formatPrice } from './format'
+export { formatPrice, telHref } from './format'
 export { viewportOnce, fadeUp, fade, staggerChildren, lineReveal } from './motion'
 export { leadSchema, phoneSchema } from './lead-schema'
 export type { LeadInput } from './lead-schema'
