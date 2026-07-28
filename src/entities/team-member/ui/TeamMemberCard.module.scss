@@ -1,0 +1,29 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.card {
+  text-align: center;
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 1;
+  margin-bottom: $space-4;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background-color: $color-charcoal-soft;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.role {
+  font-size: 0.875rem;
+  color: $color-text-muted;
+  margin-top: $space-1;
+}

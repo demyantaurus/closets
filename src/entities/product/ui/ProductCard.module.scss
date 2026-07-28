@@ -1,0 +1,53 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.card {
+  @include focus-ring;
+
+  display: block;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+  transition:
+    box-shadow $duration-base $ease-out,
+    transform $duration-base $ease-out;
+
+  @include hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card-hover;
+
+    .image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform $duration-slow $ease-out;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-4 $space-5;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.price {
+  font-size: 0.9375rem;
+  color: $color-price;
+  font-weight: 600;
+}

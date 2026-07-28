@@ -1,0 +1,41 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  height: 100%;
+  margin: 0;
+  padding: $space-6;
+  background-color: $color-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  font-size: 0.9375rem;
+}
+
+.star {
+  color: $color-border;
+}
+
+.starFilled {
+  color: $color-brass;
+}
+
+.text {
+  margin: 0;
+  flex-grow: 1;
+  color: $color-text;
+  line-height: 1.65;
+}
+
+.author {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+}

@@ -1,0 +1,80 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.card {
+  @include focus-ring;
+
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  @include hover {
+    .image {
+      transform: scale(1.06);
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+
+    .body {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: $color-charcoal-soft;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform $duration-slow $ease-out;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(28 27 26 / 85%), rgb(28 27 26 / 0%) 55%);
+  opacity: 0.85;
+  transition: opacity $duration-base $ease-out;
+}
+
+.body {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  padding: $space-5;
+  color: $color-text-on-dark;
+
+  @media (hover: hover) and (pointer: fine) {
+    transform: translateY(6px);
+    opacity: 0.95;
+    transition:
+      transform $duration-base $ease-out,
+      opacity $duration-base $ease-out;
+  }
+}
+
+.category {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color-brass;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.0625rem;
+}
