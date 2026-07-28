@@ -1,0 +1,16 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Class names must be camelCase"
+      }
+    ],
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/at-mixin-pattern": "^[a-z][a-z0-9-]*$",
+    "declaration-empty-line-before": null,
+    "no-descending-specificity": null
+  },
+  "ignoreFiles": ["node_modules/**", ".next/**", ".next-prod/**", "src/app/**"]
+}
