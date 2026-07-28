@@ -1,0 +1,77 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  padding-top: calc(76px + #{$space-7});
+  padding-bottom: $space-9;
+}
+
+.inner {
+  @include container;
+}
+
+.layout {
+  display: grid;
+  gap: $space-7;
+
+  @include from('lg') {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+  }
+}
+
+.title {
+  @include heading-2;
+
+  margin-bottom: $space-4;
+}
+
+.price {
+  font-family: $font-display;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $color-price;
+}
+
+.priceNote {
+  margin-top: $space-2;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+}
+
+.actions {
+  margin-top: $space-6;
+}
+
+.specs {
+  width: 100%;
+  margin-top: $space-7;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: $space-3 0;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+    font-size: 0.9375rem;
+  }
+
+  th {
+    font-weight: 500;
+    color: $color-text-muted;
+    width: 45%;
+  }
+}
+
+.specsTitle {
+  @include heading-3;
+
+  text-align: left;
+  margin-bottom: $space-4;
+}
+
+.description {
+  max-width: 48rem;
+  margin-top: $space-8;
+}

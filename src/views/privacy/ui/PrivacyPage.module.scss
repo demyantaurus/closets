@@ -1,0 +1,28 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  padding-top: calc(76px + #{$space-7});
+  padding-bottom: $space-9;
+}
+
+.inner {
+  @include container;
+
+  max-width: 48rem;
+}
+
+.title {
+  @include heading-2;
+
+  margin-bottom: $space-6;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  line-height: 1.7;
+  color: $color-text-muted;
+}

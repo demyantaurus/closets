@@ -1,0 +1,49 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.main {
+  @include focus-ring;
+
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-md;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.mainImage {
+  object-fit: cover;
+  transition: transform $duration-slow $ease-out;
+
+  @media (hover: hover) and (pointer: fine) {
+    .main:hover & {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: $space-3;
+}
+
+.thumb {
+  @include focus-ring;
+
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.thumbImage {
+  object-fit: cover;
+}

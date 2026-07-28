@@ -1,0 +1,71 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  padding-top: calc(76px + #{$space-7});
+  padding-bottom: $space-9;
+}
+
+.inner {
+  @include container;
+}
+
+.layout {
+  display: grid;
+  gap: $space-7;
+  align-items: start;
+
+  @include from('lg') {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.title {
+  @include heading-1;
+
+  margin-bottom: $space-4;
+}
+
+.subtitle {
+  @include body-lg;
+
+  color: $color-text-muted;
+  margin-bottom: $space-6;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  font-weight: 500;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8125rem;
+  color: $color-white;
+  background-color: $color-brass;
+  border-radius: $radius-full;
+}
+
+.calculatorWrap {
+  padding: $space-6;
+  background-color: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+
+  @include from('md') {
+    padding: $space-7;
+  }
+}

@@ -1,0 +1,20 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  padding-top: calc(76px + #{$space-7});
+  padding-bottom: $space-9;
+}
+
+.inner {
+  @include container;
+
+  max-width: 56rem;
+}
+
+.title {
+  @include heading-1;
+
+  margin-bottom: $space-7;
+}

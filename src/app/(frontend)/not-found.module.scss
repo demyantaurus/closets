@@ -1,0 +1,54 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70dvh;
+  padding-top: 76px;
+  text-align: center;
+}
+
+.code {
+  font-family: $font-display;
+  font-size: fluid(4rem, 7rem);
+  font-weight: 700;
+  color: $color-brass;
+  line-height: 1;
+}
+
+.title {
+  @include heading-2;
+
+  margin-top: $space-4;
+}
+
+.text {
+  margin-top: $space-3;
+  color: $color-text-muted;
+  max-width: 26rem;
+}
+
+.link {
+  @include touch-target;
+  @include focus-ring;
+
+  display: inline-flex;
+  align-items: center;
+  margin-top: $space-6;
+  padding: 0.7rem 1.5rem;
+  font-weight: 500;
+  color: $color-white;
+  background-color: $color-brass;
+  border-radius: $radius-button;
+  transition: background-color $duration-base $ease-out;
+
+  @include hover {
+    background-color: $color-brass-dark;
+  }
+}

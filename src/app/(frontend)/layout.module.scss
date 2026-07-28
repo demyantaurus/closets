@@ -1,0 +1,23 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.skipLink {
+  @include visually-hidden;
+
+  &:focus-visible {
+    position: fixed;
+    top: $space-3;
+    left: $space-3;
+    z-index: $z-toast;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: $space-3 $space-5;
+    clip-path: none;
+    white-space: normal;
+    background-color: $color-brass;
+    color: $color-white;
+    border-radius: $radius-md;
+    outline: 2px solid $color-brass;
+  }
+}

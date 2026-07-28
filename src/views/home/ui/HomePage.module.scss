@@ -1,0 +1,33 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.portfolio {
+  @include section-space;
+
+  background-color: $color-white;
+}
+
+.portfolioInner {
+  @include container;
+}
+
+.portfolioHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-5;
+}
+
+.portfolioLink {
+  @include focus-ring;
+
+  flex-shrink: 0;
+  margin-top: $space-2;
+  font-weight: 500;
+  color: $color-brass-dark;
+
+  @include hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+}

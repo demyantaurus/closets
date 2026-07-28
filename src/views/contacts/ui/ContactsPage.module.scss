@@ -1,0 +1,107 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.page {
+  padding-top: calc(76px + #{$space-7});
+  padding-bottom: $space-9;
+}
+
+.inner {
+  @include container;
+}
+
+.title {
+  @include heading-1;
+
+  margin-bottom: $space-7;
+}
+
+.layout {
+  display: grid;
+  gap: $space-7;
+  align-items: start;
+
+  @include from('lg') {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  margin-bottom: $space-7;
+}
+
+.row {
+  dt {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-text-muted;
+    margin-bottom: $space-2;
+  }
+
+  dd {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    font-size: 1.0625rem;
+  }
+}
+
+.phone {
+  @include focus-ring;
+
+  font-weight: 600;
+
+  @include hover {
+    color: $color-brass;
+  }
+}
+
+.link {
+  @include focus-ring;
+
+  @include hover {
+    color: $color-brass;
+  }
+}
+
+.map {
+  aspect-ratio: 16 / 9;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background-color: $color-border;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.formWrap {
+  padding: $space-6;
+  background-color: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+
+  @include from('md') {
+    padding: $space-7;
+  }
+}
+
+.formTitle {
+  @include heading-3;
+
+  margin-bottom: $space-2;
+}
+
+.formSubtitle {
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+  margin-bottom: $space-5;
+}
