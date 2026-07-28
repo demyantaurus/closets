@@ -19,7 +19,7 @@ export function ProductCard({ product, categorySlug }: { product: Product; categ
             src={image.src}
             alt={image.alt}
             fill
-            sizes="(min-width: 1920px) 288px, (max-width: 768px) 50vw, 25vw"
+            sizes="(min-width: 1920px) 288px, (min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 480px) 50vw, 100vw"
             placeholder={image.blurDataURL ? 'blur' : undefined}
             blurDataURL={image.blurDataURL}
           />

@@ -33,7 +33,7 @@ export function ProjectCard({ project, onOpen }: ProjectCardProps) {
             src={image.src}
             alt={image.alt}
             fill
-            sizes="(min-width: 1920px) 366px, (max-width: 768px) 100vw, 33vw"
+            sizes="(min-width: 1920px) 366px, (min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
             placeholder={image.blurDataURL ? 'blur' : undefined}
             blurDataURL={image.blurDataURL}
           />

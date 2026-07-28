@@ -18,7 +18,7 @@ export function CategoryCard({ category }: { category: Category }) {
             src={image.src}
             alt={image.alt}
             fill
-            sizes="(min-width: 1920px) 366px, (max-width: 768px) 50vw, 25vw"
+            sizes="(min-width: 1920px) 366px, (min-width: 1024px) 33vw, (min-width: 480px) 50vw, 100vw"
             placeholder={image.blurDataURL ? 'blur' : undefined}
             blurDataURL={image.blurDataURL}
           />

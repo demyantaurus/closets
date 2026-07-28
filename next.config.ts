@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
     loadPaths: [path.join(dirname, 'src')],
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
     localPatterns: [
       {
         pathname: '/api/media/file/**',

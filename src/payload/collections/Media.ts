@@ -52,6 +52,7 @@ export const Media: CollectionConfig = {
     staticDir: path.resolve(process.cwd(), 'uploads/media'),
     mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
     focalPoint: true,
+    adminThumbnail: 'thumbnail',
     formatOptions: {
       format: 'webp',
       options: { quality: 80 },
