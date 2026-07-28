@@ -10,7 +10,7 @@ import { ProcessTimeline } from '@/widgets/process-timeline'
 import { ReviewsSlider } from '@/widgets/reviews-slider'
 import { getPortfolio, getReviews, getSettings } from '@/shared/api'
 import { imageProps } from '@/shared/lib'
-import { SectionHeading } from '@/shared/ui'
+import { ArrowIcon, SectionHeading } from '@/shared/ui'
 
 import styles from './HomePage.module.scss'
 
@@ -30,12 +30,10 @@ export async function HomePage() {
       <section className={styles.portfolio} aria-labelledby="portfolio-title">
         <div className={styles.portfolioInner}>
           <div className={styles.portfolioHead}>
-            <SectionHeading
-              kicker="Портфолио"
-              title="Наши последние работы"
-            />
+            <SectionHeading kicker="Портфолио" title="Наши последние работы" />
             <Link className={styles.portfolioLink} href="/portfolio">
-              Все работы →
+              Все работы
+              <ArrowIcon size={16} />
             </Link>
           </div>
           <PortfolioGallery projects={portfolio} />

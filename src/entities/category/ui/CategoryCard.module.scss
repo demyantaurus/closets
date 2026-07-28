@@ -53,6 +53,8 @@
 }
 
 .arrow {
+  display: inline-flex;
+  flex-shrink: 0;
   color: $color-brass;
   transition: transform $duration-base $ease-out;
 }

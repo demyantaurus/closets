@@ -52,6 +52,10 @@
 .bannerLink {
   @include focus-ring;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
   padding: $space-2 $space-4;
   font-size: 0.875rem;
   font-weight: 500;

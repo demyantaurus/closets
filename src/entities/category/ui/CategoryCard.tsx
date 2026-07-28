@@ -4,6 +4,7 @@ import React from 'react'
 
 import type { Category } from '@/shared/api'
 import { imageProps } from '@/shared/lib'
+import { ArrowIcon } from '@/shared/ui'
 
 import styles from './CategoryCard.module.scss'
 
@@ -26,8 +27,8 @@ export function CategoryCard({ category }: { category: Category }) {
       </span>
       <span className={styles.body}>
         <span className={styles.name}>{category.name}</span>
-        <span className={styles.arrow} aria-hidden="true">
-          →
+        <span className={styles.arrow}>
+          <ArrowIcon size={16} />
         </span>
       </span>
     </Link>
