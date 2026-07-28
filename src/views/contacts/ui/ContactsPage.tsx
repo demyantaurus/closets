@@ -2,8 +2,8 @@ import React from 'react'
 
 import { LeadForm } from '@/features/lead-form'
 import { getSettings } from '@/shared/api'
-import { telHref } from '@/shared/lib'
-import { Breadcrumbs } from '@/shared/ui'
+import { absoluteUrl, ORGANIZATION_ID, telHref, WEBSITE_ID } from '@/shared/lib'
+import { Breadcrumbs, JsonLd } from '@/shared/ui'
 
 import { ContactMap } from './ContactMap'
 import styles from './ContactsPage.module.scss'
@@ -11,8 +11,20 @@ import styles from './ContactsPage.module.scss'
 export async function ContactsPage() {
   const { phones, email, address, workingHours } = await getSettings()
 
+  const url = absoluteUrl('/contacts')
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${url}#contact`,
+    name: 'Контакты',
+    url,
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: { '@id': ORGANIZATION_ID },
+  }
+
   return (
     <div className={styles.page}>
+      <JsonLd data={jsonLd} />
       <div className={styles.inner}>
         <Breadcrumbs items={[{ label: 'Контакты' }]} />
         <h1 className={styles.title}>Контакты</h1>

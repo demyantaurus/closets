@@ -11,13 +11,19 @@
 
 .head {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: $space-5;
+  margin-bottom: $space-7;
+
+  > :first-child {
+    margin-bottom: 0;
+  }
 }
 
 .arrows {
   display: none;
+  flex-shrink: 0;
   gap: $space-3;
 
   @include from('md') {
@@ -29,9 +35,9 @@
   @include touch-target(48px);
   @include focus-ring;
 
-  display: grid;
-  place-items: center;
-  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: $color-text;
   border: 1px solid $color-border;
   border-radius: $radius-full;
@@ -44,26 +50,23 @@
     color: $color-brass;
     border-color: $color-brass;
   }
-}
 
-.track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: $space-3;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
+  &:disabled {
+    color: $color-text-muted;
+    opacity: 0.4;
+    cursor: default;
   }
 }
 
+.track {
+  padding-bottom: $space-3;
+}
+
 .slide {
-  flex: 0 0 min(320px, 85%);
-  scroll-snap-align: start;
+  width: min(320px, 85%);
+  height: auto;
 
   @include from('md') {
-    flex-basis: 360px;
+    width: 360px;
   }
 }

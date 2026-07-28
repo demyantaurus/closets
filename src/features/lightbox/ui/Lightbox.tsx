@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import type { ImageProps } from '@/shared/lib'
+import { ArrowIcon } from '@/shared/ui'
 
 import styles from './Lightbox.module.scss'
 
@@ -87,7 +88,7 @@ export function Lightbox({ images, initialIndex, open, onClose }: LightboxProps)
                   prev()
                 }}
               >
-                ←
+                <ArrowIcon direction="left" size={22} />
               </button>
               <button
                 className={`${styles.arrow} ${styles.arrowRight}`}
@@ -97,7 +98,7 @@ export function Lightbox({ images, initialIndex, open, onClose }: LightboxProps)
                   next()
                 }}
               >
-                →
+                <ArrowIcon size={22} />
               </button>
             </>
           )}

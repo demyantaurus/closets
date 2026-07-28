@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { CallbackButton } from '@/features/lead-form'
 import { MobileMenu } from '@/features/mobile-menu'
 import { telHref } from '@/shared/lib'
+import { ArrowIcon } from '@/shared/ui'
 
 import styles from './Header.module.scss'
 
@@ -47,7 +48,7 @@ export function HeaderClient({
         <div className={`${styles.banner} ${showBanner ? '' : styles.bannerHidden}`}>
           <Link className={styles.bannerLink} href={banner.link} tabIndex={showBanner ? 0 : -1}>
             {banner.text}
-            <span aria-hidden="true"> →</span>
+            <ArrowIcon size={14} />
           </Link>
           <button
             type="button"

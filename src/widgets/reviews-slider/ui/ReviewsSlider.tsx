@@ -1,22 +1,22 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperInstance } from 'swiper/types'
 
 import { ReviewCard } from '@/entities/review'
 import type { Review } from '@/shared/api'
-import { SectionHeading } from '@/shared/ui'
+import { ArrowIcon, SectionHeading } from '@/shared/ui'
 
+import 'swiper/css'
 import styles from './ReviewsSlider.module.scss'
 
 export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
-  const trackRef = useRef<HTMLUListElement>(null)
+  const swiperRef = useRef<SwiperInstance | null>(null)
+  const [edges, setEdges] = useState({ isBeginning: true, isEnd: false })
 
-  function scrollByCard(direction: 1 | -1) {
-    const track = trackRef.current
-    if (!track) return
-    const card = track.querySelector('li')
-    const width = card ? card.getBoundingClientRect().width + 20 : 340
-    track.scrollBy({ left: direction * width, behavior: 'smooth' })
+  function syncEdges(swiper: SwiperInstance) {
+    setEdges({ isBeginning: swiper.isBeginning, isEnd: swiper.isEnd })
   }
 
   if (reviews.length === 0) return null
@@ -31,28 +31,43 @@ export function ReviewsSlider({ reviews }: { reviews: Review[] }) {
               type="button"
               className={styles.arrow}
               aria-label="Предыдущие отзывы"
-              onClick={() => scrollByCard(-1)}
+              disabled={edges.isBeginning}
+              onClick={() => swiperRef.current?.slidePrev()}
             >
-              ←
+              <ArrowIcon direction="left" />
             </button>
             <button
               type="button"
               className={styles.arrow}
               aria-label="Следующие отзывы"
-              onClick={() => scrollByCard(1)}
+              disabled={edges.isEnd}
+              onClick={() => swiperRef.current?.slideNext()}
             >
-              →
+              <ArrowIcon />
             </button>
           </div>
         </div>
 
-        <ul className={styles.track} ref={trackRef}>
+        <Swiper
+          className={styles.track}
+          slidesPerView="auto"
+          spaceBetween={20}
+          grabCursor
+          watchOverflow
+          keyboard={{ enabled: true }}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper
+            syncEdges(swiper)
+          }}
+          onSlideChange={syncEdges}
+          onResize={syncEdges}
+        >
           {reviews.map((review) => (
-            <li className={styles.slide} key={review.id}>
+            <SwiperSlide className={styles.slide} key={review.id}>
               <ReviewCard review={review} />
-            </li>
+            </SwiperSlide>
           ))}
-        </ul>
+        </Swiper>
       </div>
     </section>
   )
