@@ -1,0 +1,69 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.title {
+  @include heading-3;
+
+  margin-bottom: $space-2;
+}
+
+.subtitle {
+  @include body-sm;
+
+  color: $color-text-muted;
+  margin-bottom: $space-5;
+}
+
+.floating {
+  @include focus-ring;
+
+  position: fixed;
+  right: max($space-4, env(safe-area-inset-right));
+  bottom: max($space-4, env(safe-area-inset-bottom));
+  z-index: $z-sticky-cta;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  color: $color-white;
+  background-color: $color-brass;
+  border-radius: $radius-full;
+  box-shadow: $shadow-card-hover;
+  transition: background-color $duration-base $ease-out;
+
+  @include hover {
+    background-color: $color-brass-dark;
+  }
+}
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: $radius-full;
+  border: 2px solid $color-brass;
+  animation: pulse 2.4s $ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,83 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.wrapper {
+  display: block;
+
+  @include from('lg') {
+    display: none;
+  }
+}
+
+.burger {
+  @include touch-target;
+  @include focus-ring;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: $radius-sm;
+}
+
+.line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: currentcolor;
+  border-radius: 2px;
+  transition:
+    transform $duration-base $ease-out,
+    opacity $duration-base $ease-out;
+}
+
+.lineTopOpen {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.lineMidOpen {
+  opacity: 0;
+}
+
+.lineBotOpen {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.panel {
+  position: fixed;
+  inset: var(--header-height, 64px) 0 auto;
+  z-index: $z-header;
+  padding: $space-5 $space-4 $space-6;
+  background-color: $color-white-warm;
+  border-bottom: 1px solid $color-border;
+  box-shadow: $shadow-card-hover;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  @include focus-ring;
+
+  display: block;
+  padding: $space-3 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: $color-text;
+
+  &[aria-current='page'] {
+    color: $color-brass;
+  }
+}
+
+.phone {
+  @include focus-ring;
+
+  display: inline-block;
+  margin-top: $space-4;
+  font-weight: 600;
+  color: $color-brass-dark;
+}

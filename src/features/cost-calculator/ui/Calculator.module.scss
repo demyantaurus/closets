@@ -1,0 +1,134 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.calculator {
+  max-width: 40rem;
+}
+
+.progress {
+  margin-bottom: $space-6;
+}
+
+.progressBar {
+  height: 4px;
+  border-radius: $radius-full;
+  background-color: $color-border;
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background-color: $color-brass;
+  border-radius: $radius-full;
+  transition: width $duration-base $ease-out;
+}
+
+.progressLabel {
+  margin-top: $space-2;
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stepTitle {
+  @include heading-3;
+
+  margin-bottom: $space-5;
+  padding: 0;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-3;
+
+  @include from('xs') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $space-4 $space-5;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background-color: $color-white;
+  cursor: pointer;
+  font-weight: 500;
+  transition:
+    border-color $duration-base $ease-out,
+    background-color $duration-base $ease-out,
+    transform $duration-fast $ease-out;
+
+  @include hover {
+    border-color: $color-brass;
+  }
+
+  &:has(:focus-visible) {
+    outline: 2px solid $color-brass;
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.optionSelected {
+  border-color: $color-brass;
+  background-color: tint-accent(10%);
+}
+
+.optionInput {
+  @include visually-hidden;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.honeypot {
+  @include visually-hidden;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-top: $space-6;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: $color-error;
+}
+
+.done {
+  padding: $space-8 0;
+  text-align: center;
+}
+
+.doneTitle {
+  @include heading-3;
+
+  color: $color-success;
+  margin-bottom: $space-3;
+}
+
+.doneText {
+  color: $color-text-muted;
+  max-width: 26rem;
+  margin-inline: auto;
+}

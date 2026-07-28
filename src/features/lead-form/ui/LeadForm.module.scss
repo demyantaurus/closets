@@ -1,0 +1,38 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.honeypot {
+  @include visually-hidden;
+}
+
+.success {
+  padding: $space-6 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: $color-success;
+  text-align: center;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: $color-error;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+
+  a {
+    text-decoration: underline;
+
+    @include hover {
+      color: $color-brass;
+    }
+  }
+}

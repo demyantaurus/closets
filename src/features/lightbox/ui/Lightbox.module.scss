@@ -1,0 +1,104 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+  background-color: rgb(20 19 18 / 92%);
+
+  @include from('md') {
+    padding: $space-8;
+  }
+}
+
+.imageWrap {
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 8rem);
+  object-fit: contain;
+  border-radius: $radius-sm;
+}
+
+.close {
+  @include touch-target;
+  @include focus-ring;
+
+  position: absolute;
+  top: $space-4;
+  right: $space-4;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: $color-text-on-dark;
+  border-radius: $radius-full;
+  transition: color $duration-base $ease-out;
+
+  @include hover {
+    color: $color-brass;
+  }
+}
+
+.counter {
+  position: absolute;
+  top: $space-5;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+  color: rgb(243 239 232 / 70%);
+}
+
+.arrow {
+  @include touch-target(48px);
+  @include focus-ring;
+
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: $color-text-on-dark;
+  background-color: rgb(255 255 255 / 8%);
+  border-radius: $radius-full;
+  backdrop-filter: blur(4px);
+  transition:
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out;
+
+  @include hover {
+    background-color: rgb(255 255 255 / 18%);
+    color: $color-brass;
+  }
+}
+
+.arrowLeft {
+  left: $space-3;
+
+  @include from('md') {
+    left: $space-6;
+  }
+}
+
+.arrowRight {
+  right: $space-3;
+
+  @include from('md') {
+    right: $space-6;
+  }
+}
