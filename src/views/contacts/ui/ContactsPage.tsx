@@ -2,12 +2,14 @@ import React from 'react'
 
 import { LeadForm } from '@/features/lead-form'
 import { getSettings } from '@/shared/api'
+import { telHref } from '@/shared/lib'
 import { Breadcrumbs } from '@/shared/ui'
 
+import { ContactMap } from './ContactMap'
 import styles from './ContactsPage.module.scss'
 
 export async function ContactsPage() {
-  const settings = await getSettings()
+  const { phones, email, address, workingHours } = await getSettings()
 
   return (
     <div className={styles.page}>
@@ -18,54 +20,44 @@ export async function ContactsPage() {
         <div className={styles.layout}>
           <div className={styles.details}>
             <dl className={styles.list}>
-              {settings.phones && settings.phones.length > 0 && (
+              {phones?.length ? (
                 <div className={styles.row}>
                   <dt>Телефоны</dt>
                   <dd>
-                    {settings.phones.map((item) => (
-                      <a
-                        key={item.id}
-                        className={styles.phone}
-                        href={`tel:${item.number.replace(/[^+0-9]/g, '')}`}
-                      >
+                    {phones.map((item) => (
+                      <a key={item.id} className={styles.phone} href={telHref(item.number)}>
                         {item.number}
                       </a>
                     ))}
                   </dd>
                 </div>
-              )}
-              {settings.email && (
+              ) : null}
+              {email && (
                 <div className={styles.row}>
                   <dt>Email</dt>
                   <dd>
-                    <a className={styles.link} href={`mailto:${settings.email}`}>
-                      {settings.email}
+                    <a className={styles.link} href={`mailto:${email}`}>
+                      {email}
                     </a>
                   </dd>
                 </div>
               )}
-              {settings.address && (
+              {address && (
                 <div className={styles.row}>
                   <dt>Адрес</dt>
-                  <dd>{settings.address}</dd>
+                  <dd>{address}</dd>
                 </div>
               )}
-              {settings.workingHours && (
+              {workingHours && (
                 <div className={styles.row}>
                   <dt>Часы работы</dt>
-                  <dd>{settings.workingHours}</dd>
+                  <dd>{workingHours}</dd>
                 </div>
               )}
             </dl>
 
             <div className={styles.map}>
-              <iframe
-                className={styles.mapFrame}
-                src="https://yandex.by/map-widget/v1/?ll=27.561831%2C53.902284&z=12"
-                title="Карта: как нас найти"
-                loading="lazy"
-                allowFullScreen
-              />
+              <ContactMap address={address} />
             </div>
           </div>
 
