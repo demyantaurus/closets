@@ -1,0 +1,27 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.section {
+  @include section-space;
+}
+
+.inner {
+  @include container;
+}
+
+.grid {
+  display: grid;
+  gap: $space-5;
+
+  @include from('xs') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from('xxl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

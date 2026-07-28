@@ -1,0 +1,69 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.section {
+  @include section-space;
+}
+
+.inner {
+  @include container;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-5;
+}
+
+.arrows {
+  display: none;
+  gap: $space-3;
+
+  @include from('md') {
+    display: flex;
+  }
+}
+
+.arrow {
+  @include touch-target(48px);
+  @include focus-ring;
+
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  color: $color-text;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  background-color: $color-white;
+  transition:
+    color $duration-base $ease-out,
+    border-color $duration-base $ease-out;
+
+  @include hover {
+    color: $color-brass;
+    border-color: $color-brass;
+  }
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: $space-3;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  flex: 0 0 min(320px, 85%);
+  scroll-snap-align: start;
+
+  @include from('md') {
+    flex-basis: 360px;
+  }
+}

@@ -1,0 +1,77 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.section {
+  @include section-space;
+
+  background-color: $color-charcoal;
+  color: $color-text-on-dark;
+}
+
+.inner {
+  @include container;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: $space-5;
+}
+
+.track {
+  position: relative;
+  width: 2px;
+  margin-inline: auto;
+  background-color: tint-invert(12%);
+  border-radius: $radius-full;
+}
+
+.trackFill {
+  position: absolute;
+  inset: 0;
+  background-color: $color-brass;
+  border-radius: $radius-full;
+  transform-origin: top;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-7;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: $space-5;
+  align-items: flex-start;
+}
+
+.node {
+  position: absolute;
+  left: -48px;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-white;
+  background-color: $color-brass;
+  border-radius: $radius-full;
+}
+
+.stepTitle {
+  @include heading-3;
+
+  color: $color-heading-invert;
+  margin-bottom: $space-2;
+}
+
+.stepText {
+  max-width: 34rem;
+  color: tint-invert(60%);
+}

@@ -1,0 +1,60 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-bottom: $space-6;
+}
+
+.chip {
+  @include focus-ring;
+
+  padding: 0.55rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  background-color: $color-white;
+  transition:
+    border-color $duration-base $ease-out,
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out;
+
+  @include hover {
+    border-color: $color-brass;
+  }
+}
+
+.chipActive {
+  border-color: $color-brass;
+  background-color: $color-brass;
+  color: $color-white;
+
+  @include hover {
+    background-color: $color-brass-dark;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: $space-5;
+
+  @include from('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include from('xl') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from('xxl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.empty {
+  padding: $space-7 0;
+  color: $color-text-muted;
+}

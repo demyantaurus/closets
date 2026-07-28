@@ -1,0 +1,427 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background-color: $color-charcoal;
+  color: $color-text-on-dark;
+}
+
+.withImage {
+  --c-on-invert-strong: #fff;
+  --c-on-invert: #f3efe8;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bgImage {
+  object-fit: cover;
+  animation: kenburns 26s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(14 13 12 / 78%), rgb(14 13 12 / 35%) 55%, rgb(14 13 12 / 55%)),
+    linear-gradient(to top, rgb(14 13 12 / 65%), transparent 40%);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.blobOne,
+.blobTwo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+
+.blobOne {
+  width: 640px;
+  height: 640px;
+  top: -160px;
+  right: -120px;
+  background: radial-gradient(circle, tint-accent(45%), transparent 70%);
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+.blobTwo {
+  width: 480px;
+  height: 480px;
+  bottom: -180px;
+  left: -100px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c-accent-dark) 40%, transparent), transparent 70%);
+  animation: drift 30s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-60px, 40px) scale(1.15);
+  }
+}
+
+.signature {
+  --line: #{tint-invert(14%)};
+  --oak-bright: var(--c-accent);
+  --ring-glow-strong: #{tint-accent(50%)};
+  --ring-glow: #{tint-accent(28%)};
+  --ring-glow-soft: #{tint-accent(18%)};
+
+  position: absolute;
+  top: 50%;
+  right: clamp(-160px, -4vw, 0px);
+  width: min(620px, 46vw);
+  transform: translateY(-50%);
+  display: none;
+  opacity: 0;
+  animation: signature-in 1.6s $ease-out 0.4s forwards;
+
+  @include from('lg') {
+    display: block;
+  }
+}
+
+@keyframes signature-in {
+  from {
+    opacity: 0;
+    transform: translateY(-46%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+.rings circle {
+  animation: ring-pulse 6s ease-in-out infinite;
+}
+
+@for $i from 1 through 8 {
+  .rings circle:nth-of-type(#{$i}) {
+    animation-delay: #{0.35 * ($i - 1)}s;
+  }
+}
+
+@keyframes ring-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.door {
+  animation: door-float 7s ease-in-out infinite alternate;
+}
+
+@keyframes door-float {
+  from {
+    transform: translateY(-6px);
+  }
+
+  to {
+    transform: translateY(6px);
+  }
+}
+
+.doorPath {
+  stroke-dasharray: 1170;
+  stroke-dashoffset: 1170;
+  animation: door-draw 2s $ease-out 0.8s forwards;
+}
+
+@keyframes door-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.doorDivider {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: door-draw 0.9s $ease-out 2.4s forwards;
+}
+
+.doorHandle {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: door-draw 0.6s $ease-out 3s forwards;
+}
+
+.doorLeg {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  animation: door-draw 0.4s $ease-out 2.6s forwards;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.inner {
+  @include container;
+
+  position: relative;
+  padding-block: $space-10 $space-9;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kicker,
+  .titleInner,
+  .subtitle,
+  .actions,
+  .stats {
+    animation: rise 0.8s $ease-out both;
+  }
+
+  .kicker {
+    animation-delay: 0.1s;
+  }
+
+  .titleInner {
+    animation-delay: 0.22s;
+  }
+
+  .titleLine:nth-child(2) .titleInner {
+    animation-delay: 0.34s;
+  }
+
+  .subtitle {
+    animation-delay: 0.46s;
+  }
+
+  .actions {
+    animation-delay: 0.58s;
+  }
+
+  .stats {
+    animation-delay: 0.7s;
+  }
+}
+
+.kicker {
+  @include caption;
+
+  color: $color-brass;
+  margin-bottom: $space-5;
+}
+
+.title {
+  @include heading-1;
+
+  font-size: fluid(2.75rem, 5.5rem);
+  color: $color-heading-invert;
+}
+
+.titleLine {
+  display: block;
+  overflow: hidden;
+}
+
+.titleInner {
+  display: block;
+}
+
+.accent {
+  color: $color-brass;
+}
+
+.subtitle {
+  @include body-lg;
+
+  max-width: 34rem;
+  margin-top: $space-5;
+  color: tint-invert(70%);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+  margin-top: $space-7;
+}
+
+.primaryCta,
+.secondaryCta {
+  @include touch-target;
+  @include focus-ring;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.25rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  border-radius: $radius-button;
+  transition:
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out,
+    transform $duration-fast $ease-out;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.primaryCta {
+  background-color: $color-brass;
+  color: $color-white;
+
+  @include hover {
+    background-color: $color-brass-dark;
+  }
+}
+
+.secondaryCta {
+  border: 1px solid tint-invert(30%);
+  color: $color-text-on-dark;
+
+  @include hover {
+    border-color: $color-brass;
+    color: $color-brass;
+  }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6 $space-8;
+  margin: $space-9 0 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.statValue {
+  @include heading-2;
+
+  margin: 0;
+  color: $color-brass;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: tint-invert(55%);
+  margin-top: $space-1;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: $space-5;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 38px;
+  border: 1.5px solid tint-invert(35%);
+  border-radius: $radius-full;
+  display: none;
+
+  @include from('md') {
+    display: block;
+  }
+}
+
+.scrollDot {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: $radius-full;
+  background-color: $color-brass;
+  animation: scroll-hint 2s $ease-out infinite;
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blobOne,
+  .blobTwo,
+  .scrollDot,
+  .bgImage {
+    animation: none;
+  }
+
+  .signature {
+    animation: none;
+    opacity: 1;
+  }
+
+  .rings circle,
+  .door {
+    animation: none;
+  }
+
+  .doorPath,
+  .doorDivider,
+  .doorHandle,
+  .doorLeg {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
