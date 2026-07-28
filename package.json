@@ -1,0 +1,94 @@
+{
+  "name": "closets",
+  "version": "0.1.0",
+  "description": "Custom furniture website — Next.js + Payload CMS",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload/payload.config.ts payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload/payload.config.ts payload generate:types",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/payload/seed.ts && rm -rf .next/dev/cache .next/cache/fetch-cache",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "lint:fsd": "steiger ./src",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "test": "pnpm run test:int && pnpm run test:e2e",
+    "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "3.86.0",
+    "@payloadcms/email-nodemailer": "3.86.0",
+    "@payloadcms/live-preview-react": "3.86.0",
+    "@payloadcms/next": "3.86.0",
+    "@payloadcms/richtext-lexical": "3.86.0",
+    "@payloadcms/translations": "3.86.0",
+    "@payloadcms/ui": "3.86.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.4.7",
+    "framer-motion": "^12.42.2",
+    "graphql": "^16.8.1",
+    "next": "16.2.6",
+    "payload": "3.86.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "0.34.2",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@feature-sliced/steiger-plugin": "^0.7.0",
+    "@playwright/test": "1.58.2",
+    "@testing-library/react": "16.3.0",
+    "@types/node": "22.19.9",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "4.5.2",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "16.2.6",
+    "eslint-plugin-boundaries": "^7.1.0",
+    "husky": "^9.1.7",
+    "jsdom": "28.0.0",
+    "lint-staged": "^17.2.0",
+    "prettier": "^3.4.2",
+    "sass": "^1.102.0",
+    "steiger": "^0.6.0",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "tsx": "4.22.4",
+    "typescript": "5.7.3",
+    "vite-tsconfig-paths": "6.0.5",
+    "vitest": "4.0.18"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0",
+    "pnpm": "^9 || ^10 || ^11"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "unrs-resolver"
+    ]
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "Safari >= 16",
+    "iOS >= 16",
+    "last 2 ChromeAndroid versions",
+    "last 2 Samsung versions"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --fix",
+    "*.scss": "stylelint --fix",
+    "*.{ts,tsx,scss,json,md}": "prettier --write"
+  }
+}
