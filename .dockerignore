@@ -1,0 +1,13 @@
+node_modules
+.next
+.next-prod
+.git
+uploads
+media
+backups
+test-results
+playwright-report
+docs
+*.md
+.env*
+!.env.example
