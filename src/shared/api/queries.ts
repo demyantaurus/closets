@@ -1,28 +1,31 @@
 import { unstable_cache } from 'next/cache'
+import { cache } from 'react'
 
 import { getPayloadClient } from './client'
 
 const isPublished = { published: { equals: true } }
 const isPublishedStatus = { _status: { equals: 'published' } }
 
-export const getCategories = unstable_cache(
-  async () => {
-    const payload = await getPayloadClient()
-    const res = await payload.find({
-      collection: 'categories',
-      where: isPublished,
-      sort: 'sortOrder',
-      depth: 1,
-      limit: 100,
-    })
-    return res.docs
-  },
-  ['categories'],
-  { tags: ['categories'] },
+export const getCategories = cache(
+  unstable_cache(
+    async () => {
+      const payload = await getPayloadClient()
+      const res = await payload.find({
+        collection: 'categories',
+        where: isPublished,
+        sort: 'sortOrder',
+        depth: 1,
+        limit: 100,
+      })
+      return res.docs
+    },
+    ['categories'],
+    { tags: ['categories'] },
+  ),
 )
 
-export function getCategoryBySlug(slug: string) {
-  return unstable_cache(
+export const getCategoryBySlug = cache((slug: string) =>
+  unstable_cache(
     async () => {
       const payload = await getPayloadClient()
       const res = await payload.find({
@@ -35,11 +38,11 @@ export function getCategoryBySlug(slug: string) {
     },
     ['category', slug],
     { tags: ['categories'] },
-  )()
-}
+  )(),
+)
 
-export function getProducts(categoryId?: number) {
-  return unstable_cache(
+export const getProducts = cache((categoryId?: number) =>
+  unstable_cache(
     async () => {
       const payload = await getPayloadClient()
       const res = await payload.find({
@@ -55,11 +58,11 @@ export function getProducts(categoryId?: number) {
     },
     ['products', String(categoryId ?? 'all')],
     { tags: ['products'] },
-  )()
-}
+  )(),
+)
 
-export function getProductBySlug(slug: string) {
-  return unstable_cache(
+export const getProductBySlug = cache((slug: string) =>
+  unstable_cache(
     async () => {
       const payload = await getPayloadClient()
       const res = await payload.find({
@@ -72,11 +75,11 @@ export function getProductBySlug(slug: string) {
     },
     ['product', slug],
     { tags: ['products'] },
-  )()
-}
+  )(),
+)
 
-export function getPortfolio(limit = 100) {
-  return unstable_cache(
+export const getPortfolio = cache((limit = 100) =>
+  unstable_cache(
     async () => {
       const payload = await getPayloadClient()
       const res = await payload.find({
@@ -90,11 +93,11 @@ export function getPortfolio(limit = 100) {
     },
     ['portfolio', String(limit)],
     { tags: ['portfolio'] },
-  )()
-}
+  )(),
+)
 
-export function getReviews(limit = 20) {
-  return unstable_cache(
+export const getReviews = cache((limit = 20) =>
+  unstable_cache(
     async () => {
       const payload = await getPayloadClient()
       const res = await payload.find({
@@ -108,41 +111,45 @@ export function getReviews(limit = 20) {
     },
     ['reviews', String(limit)],
     { tags: ['reviews'] },
-  )()
-}
-
-export const getTeam = unstable_cache(
-  async () => {
-    const payload = await getPayloadClient()
-    const res = await payload.find({
-      collection: 'team-members',
-      where: isPublished,
-      sort: 'sortOrder',
-      depth: 1,
-      limit: 20,
-    })
-    return res.docs
-  },
-  ['team'],
-  { tags: ['team'] },
+  )(),
 )
 
-export const getFaq = unstable_cache(
-  async () => {
-    const payload = await getPayloadClient()
-    const res = await payload.find({
-      collection: 'faq-items',
-      where: isPublished,
-      sort: 'sortOrder',
-      limit: 50,
-    })
-    return res.docs
-  },
-  ['faq'],
-  { tags: ['faq'] },
+export const getTeam = cache(
+  unstable_cache(
+    async () => {
+      const payload = await getPayloadClient()
+      const res = await payload.find({
+        collection: 'team-members',
+        where: isPublished,
+        sort: 'sortOrder',
+        depth: 1,
+        limit: 20,
+      })
+      return res.docs
+    },
+    ['team'],
+    { tags: ['team'] },
+  ),
 )
 
-export async function getProductBySlugDraft(slug: string) {
+export const getFaq = cache(
+  unstable_cache(
+    async () => {
+      const payload = await getPayloadClient()
+      const res = await payload.find({
+        collection: 'faq-items',
+        where: isPublished,
+        sort: 'sortOrder',
+        limit: 50,
+      })
+      return res.docs
+    },
+    ['faq'],
+    { tags: ['faq'] },
+  ),
+)
+
+export const getProductBySlugDraft = cache(async (slug: string) => {
   const payload = await getPayloadClient()
   const res = await payload.find({
     collection: 'products',
@@ -153,9 +160,9 @@ export async function getProductBySlugDraft(slug: string) {
     overrideAccess: true,
   })
   return res.docs[0] ?? null
-}
+})
 
-export async function getPortfolioDraft(limit = 100) {
+export const getPortfolioDraft = cache(async (limit = 100) => {
   const payload = await getPayloadClient()
   const res = await payload.find({
     collection: 'portfolio-projects',
@@ -166,13 +173,15 @@ export async function getPortfolioDraft(limit = 100) {
     overrideAccess: true,
   })
   return res.docs
-}
+})
 
-export const getSettings = unstable_cache(
-  async () => {
-    const payload = await getPayloadClient()
-    return payload.findGlobal({ slug: 'site-settings' })
-  },
-  ['settings'],
-  { tags: ['settings'] },
+export const getSettings = cache(
+  unstable_cache(
+    async () => {
+      const payload = await getPayloadClient()
+      return payload.findGlobal({ slug: 'site-settings' })
+    },
+    ['settings'],
+    { tags: ['settings'] },
+  ),
 )
