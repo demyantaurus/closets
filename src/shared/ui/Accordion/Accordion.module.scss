@@ -1,0 +1,62 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: 1px solid $color-border;
+}
+
+.heading {
+  margin: 0;
+}
+
+.trigger {
+  @include focus-ring;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  width: 100%;
+  padding: $space-5 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  text-align: left;
+  transition: color $duration-base $ease-out;
+
+  @include hover {
+    color: $color-brass;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: $color-brass;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  transition: transform $duration-base $ease-out;
+}
+
+.iconOpen {
+  transform: rotate(45deg);
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.content {
+  padding-bottom: $space-5;
+  max-width: 48rem;
+  color: $color-text-muted;
+}

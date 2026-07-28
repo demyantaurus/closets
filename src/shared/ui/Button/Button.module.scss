@@ -1,0 +1,66 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.button {
+  @include touch-target;
+  @include focus-ring;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  font-weight: 500;
+  border-radius: $radius-button;
+  transition:
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out,
+    border-color $duration-base $ease-out,
+    transform $duration-fast $ease-out;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background-color: $color-brass;
+  color: $color-white;
+
+  @include hover {
+    background-color: $color-brass-dark;
+  }
+}
+
+.outline {
+  border: 1px solid currentcolor;
+  color: inherit;
+  background: transparent;
+
+  @include hover {
+    background-color: tint-accent(12%);
+  }
+}
+
+.ghost {
+  color: inherit;
+  background: transparent;
+
+  @include hover {
+    color: $color-brass;
+  }
+}
+
+.md {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.lg {
+  padding: 1rem 2.25rem;
+  font-size: 1.0625rem;
+}

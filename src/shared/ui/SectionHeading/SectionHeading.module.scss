@@ -1,0 +1,47 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+@use 'shared/styles/typography' as *;
+
+.heading {
+  max-width: 44rem;
+  margin-bottom: $space-7;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.kicker {
+  @include caption;
+
+  color: $color-brass-dark;
+  margin-bottom: $space-3;
+}
+
+.title {
+  @include heading-2;
+
+  position: relative;
+}
+
+.description {
+  @include body-lg;
+
+  margin-top: $space-4;
+  color: $color-text-muted;
+}
+
+.onDark {
+  .kicker {
+    color: $color-brass;
+  }
+
+  .title {
+    color: $color-heading-invert;
+  }
+
+  .description {
+    color: tint-invert(65%);
+  }
+}

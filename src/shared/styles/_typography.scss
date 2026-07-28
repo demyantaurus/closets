@@ -1,0 +1,51 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+@mixin heading-1 {
+  font-family: $font-display;
+  font-size: fluid(2rem, 3.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@mixin heading-2 {
+  font-family: $font-display;
+  font-size: fluid(1.5rem, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+@mixin heading-3 {
+  font-family: $font-display;
+  font-size: fluid(1.25rem, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+@mixin body-lg {
+  font-family: $font-body;
+  font-size: fluid(1rem, 1.125rem);
+  line-height: 1.6;
+}
+
+@mixin body {
+  font-family: $font-body;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@mixin body-sm {
+  font-family: $font-body;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@mixin caption {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,46 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.control {
+  @include focus-ring;
+
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background-color: $color-white;
+  transition: border-color $duration-base $ease-out;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: $color-brass;
+  }
+}
+
+.textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.invalid {
+  border-color: $color-error;
+}
+
+.error {
+  font-size: 0.8125rem;
+  color: $color-error;
+}

@@ -1,0 +1,28 @@
+@use 'shared/styles/variables' as *;
+@use 'shared/styles/mixins' as *;
+
+.breadcrumbs {
+  margin-bottom: $space-5;
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
+
+  li + li::before {
+    content: '/';
+    margin-right: $space-2;
+    color: $color-border;
+  }
+
+  a {
+    @include focus-ring;
+
+    @include hover {
+      color: $color-brass;
+    }
+  }
+}
