@@ -4,6 +4,8 @@ import React from 'react'
 
 import { FloatingCallback } from '@/features/lead-form'
 import { getSettings } from '@/shared/api'
+import { organizationSchema, websiteSchema } from '@/shared/lib'
+import { JsonLd } from '@/shared/ui'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
@@ -46,20 +48,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Closets',
-    description: 'Мебель на заказ в Минске: шкафы-купе, гардеробные, кухни, прихожие',
-    url: SERVER_URL,
-    telephone: settings.phones?.[0]?.number,
-    email: settings.email,
-    address: settings.address
-      ? {
-          '@type': 'PostalAddress',
-          streetAddress: settings.address,
-          addressLocality: 'Минск',
-          addressCountry: 'BY',
-        }
-      : undefined,
+    '@graph': [organizationSchema(settings), websiteSchema()],
   }
 
   return (
@@ -69,10 +58,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       className={`${display.variable} ${body.variable}`}
     >
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={jsonLd} />
         <a className={styles.skipLink} href="#main">
           Перейти к содержимому
         </a>
