@@ -58,6 +58,7 @@
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.5;
+  will-change: transform;
 }
 
 .blobOne {
